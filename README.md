@@ -45,5 +45,20 @@ P(y = 0|x;θ) = 1- h_θ(x) <br>
 * lr.predict直接预测分类，lr.predcit_proba预测出来属于各个类别的概率
 * plt.scatter绘制散点图，plt.contour绘制散点的轮廓图，这里解释一下最后的一行代码：plt.contour(x_grid, y_grid, z_proba, [0.5], linewidths=2., colors='blue')
 x_grid, y_grid绘制了网格，有200*100个点，然后z_probe给出来这200*100个点属于1的概率，[0.5]的意思是只有概率值为0.5的才会绘制轮廓线，linewidths=2., colors='blue'线性和颜色。
+* plt.annotate(s='str', xy=(x,y) , xytext=(l1,l2) , ...))用于标注文字,其中s为注释文本内容，xy为被注释的坐标点，xytest为注释文字的坐标位置
 
+鸢尾花采用逻辑回归实践
+====
 
+需要采用的工具包
+----
+numpy,pandas数据处理
+matplotlib,seaborn绘图工具
+
+分析步骤
+----
+* 首先用sklearn导出iris的数据，然后将数据转化为pandas。查看数据的简单信息，比如feature，label
+* 利用seaborn对数据进行可视化，sns.pairplot不同标签组合的散点可视化，sns.boxplot箱型图可以得到不同类别在不同特征上的分布差异情况
+* 还可取三个特征绘制三维的散点图
+* 利用回归模型进行训练和预测：包括了样本拆分，train_test_split,进行二分类，三分类(都是只需要数据输入即可，二分类中输入的数据的label只有两个，多分类中输入的数据的label有多个)
+* 结果评价用到了混淆矩阵 metrics.confusion_matric()
